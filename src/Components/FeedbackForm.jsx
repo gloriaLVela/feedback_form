@@ -5,7 +5,8 @@ const FeedbackForm = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        feedback: ''
+        feedback: '',
+        rating: '' // new state for rating
       });
 
     // The function takes an event parameter, representing the event triggered by the user's interaction with an input element.
@@ -27,6 +28,7 @@ const FeedbackForm = () => {
           Name: ${formData.name}
           Email: ${formData.email}
           Feedback: ${formData.feedback}
+          Rating: ${formData.rating}
         `;
 
         // This line displays a confirmation dialog using the window.confirm(), presenting the confirmationMessage to the user.
@@ -38,7 +40,8 @@ const FeedbackForm = () => {
           setFormData({
             name: '',
             email: '',
-            feedback: ''
+            feedback: '',
+            rating: '',
           });
           alert('Thank you for your valuable feedback!');
         }
@@ -72,6 +75,22 @@ const FeedbackForm = () => {
           value={formData.feedback}
           onChange={handleChange}
         ></textarea>
+        <div>Rate Us:</div>
+        <div>
+            {[1, 2, 3, 4, 5].map((value) => (
+            <label key={value} style={{ marginRight: '15px' }}>
+                <input
+                type="radio"
+                name="rating"
+                value={value}
+                onChange={handleChange}
+                style={{ marginRight: '5px' }}
+                />
+                {value}
+            </label>
+            ))}
+        </div>
+        
         <button type="submit">Submit Feedback</button>
       </form>
     </>
